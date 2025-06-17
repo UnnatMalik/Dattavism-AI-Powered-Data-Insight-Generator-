@@ -1,0 +1,42 @@
+[theme]
+base = "dark"
+primaryColor = "#7792E3"
+secondaryBackgroundColor = "#1B1B1B"
+backgroundColor = "#0E1117"
+textColor = "#FAFAFA"
+
+[theme.sidebar]
+backgroundColor = "#161A1D"
+textColor = "#FFFFFF"
+borderColor = "#2E3439"
+borderWidth = 2
+borderRadius = 8
+padding = 20
+
+[theme.components]
+button = "#4A5568"
+selectbox = "#2D3748"
+slider = "#4A5568"
+
+[client]
+showErrorDetails = false
+showSidebarNavigation = false
+toolbarMode = "minimal"
+caching = true
+
+[browser]
+gatherUsageStats = false
+serverAddress = "localhost"
+serverPort = 8501
+
+[runner]
+fastReruns = true
+enforceSerializableSessionState = true
+
+[server]
+enableCORS = true
+maxUploadSize = 200
+maxMessageSize = 200
+enableXsrfProtection = true
+enableWebsocketCompression = true
+
