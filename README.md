@@ -50,7 +50,28 @@ streamlit run main.py
 
 
 # 🗺️ Roadmap
-
+``` mermaid
+flowchart TD
+    A[User Uploads Data File] --> B[File Type Detection]
+    B --> C{Supported Format?}
+    C -->|Yes| D[Data Parsing & Preprocessing]
+    C -->|No| E[Error: Unsupported Format]
+    D --> F[Data Analysis & Statistical Profiling]
+    F --> G[AI-Powered Insight Generation]
+    G --> H[Visualization Selection]
+    H --> I[Generate Interactive Charts]
+    I --> J[Generate Natural Language Summary]
+    J --> K[Display Insights Dashboard]
+    K --> L[User Interacts with Results]
+    L --> M{User Requests Export?}
+    M -->|Yes| N[Export Insights as Report/Notebook]
+    M -->|No| O[Session Ends]
+    
+    style A fill:#4CAF50,stroke:#388E3C
+    style E fill:#FF5722,stroke:#E64A19
+    style K fill:#2196F3,stroke:#1976D2
+    style N fill:#9C27B0,stroke:#7B1FA2
+```
 
 
 
