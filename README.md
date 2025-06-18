@@ -1,0 +1,73 @@
+
+
+
+# 🔮 Dattavism (दत्ताविस्म)
+
+Dattavism is an intelligent, AI-powered data insight platform built with Python, Streamlit, Gemini API, Pandas, Matplotlib, NumPy, and MySQL. It enables users from any domain—business, science, medical, social research—to upload a CSV dataset and receive a full, contextual report of patterns, visualizations, summaries, and insights without writing a single line of code.
+
+### 🚀 What Dattavism can do 
+
+- 📂 Accepts CSV data of any domain (business, science, healthcare, etc.)
+- 🧠 Uses Gemini AI to understand the data context and generate meaningful narratives
+- 📊 Automatically generates charts based on key patterns
+- 📈 Allows custom visualizations with user-selected parameters
+- 🤖 Supports Q&A—users can ask natural-language questions about the data
+- 📄 Generates a downloadable insight report (PDF) including summaries, charts, and recommendations
+
+
+# Quick Start Demo
+
+###  🧪 How It Works
+
+1. Upload your CSV file
+2. Backend processes and understands your data
+3. Gemini API generates textual descriptions and business insights
+4. Visual charts and analytics are rendered dynamically
+5. User can ask questions and customize visualizations
+6. Export a downloadable PDF/Markdown report
+
+# Installation
+[(Back to top)](#table-of-contents)
+
+```bash
+git clone https://github.com/UnnatMalik/Dattavism-AI-Powered-Data-Insight-Generator-.git
+cd Dattavism-AI-Powered-Data-Insight-Generator-
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Create a .env file and add your keys
+touch .env
+```
+
+
+# Contribute
+[(Back to top)](#table-of-contents)
+
+You can use this section to highlight how people can contribute to your project.
+
+You can add information on how they can open issues or how they can sponsor the project.
+
+
+# License
+[(Back to top)](#table-of-contents)
+
+You can also mention what license the project uses. I usually add it like this:
+
+[MIT license](./LICENSE)
+
+
+
+<h2 id="technologies">💻 Technologies</h2>
+
+
+
+| Layer        | Tools/Technologies                  |
+|--------------|-------------------------------------|
+| Language   |  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white&style=for-the-badge" height="40" alt="python logo"  />                                         |
+| Frontend     | <img src="https://img.shields.io/badge/Streamlit-red?style=flat-square&logo=streamlit&logoColor=white" height="40" alt="Streamlit" />|
+| AI Engine    | <img src="https://img.shields.io/badge/google%20gemini-8E75B2?style=for-the-badge&logo=google%20gemini&logoColor=white" height="40" alt="Gemini" />                          |
+| Data Engine  | <img src="https://img.shields.io/badge/pandas-150458?logo=pandas&logoColor=white&style=for-the-badge" height="40" alt="pandas logo"  /> <img width="12" /> <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black" height="40" alt="Matplotlib" /> | 
+| Reporting    | <img src="https://img.shields.io/badge/ReportLabs-gray?style=flat-square&logo=readthedocs" height="40" alt="ReportLabs" /> <img src="https://img.shields.io/badge/MarkDown-Blue?style=flat-square&logo=markdown&logoColor=Red" height="40" alt="MarkDown" />    |
+
+
