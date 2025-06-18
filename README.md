@@ -16,6 +16,7 @@ Dattavism is an intelligent, AI-powered data insight platform built with Python,
 
 
 # Quick Start Demo
+![Dattavism-ezgif com-cut](https://github.com/user-attachments/assets/e9d9d0a5-8481-484f-8473-f9769892c9f9)
 
 ###  🧪 How It Works
 
