@@ -1,4 +1,3 @@
-from flask import session
 import streamlit as st 
 import pandas as pd
 from utils.gemini_ai import context_detection, generate_report
@@ -14,9 +13,11 @@ class Pages_switch():
     st.sidebar.page_link("main.py", label="Home 🏠")
     st.sidebar.page_link("pages/upload_data.py", label="Upload Data-Sets 📂")
     st.sidebar.page_link("pages/report.py", label="Data-Set report 📄")
+    st.sidebar.page_link("pages/Q&A.py", label="Q&A with Dattavism ❓")
+
 
 st.title("📂 Upload Your Dataset")
-st.markdown("Upload a CSV file from any domain (e.g., business, healthcare, research) and let the AI generate insights.")
+st.markdown("Upload a CSV file from any domain (e.g., business, healthcare, research) and let the Dattavism generate insights.")
 
 uploaded_file = st.file_uploader(
     "Upload CSV file",
@@ -38,7 +39,7 @@ if uploaded_file is not None:
         st.error(f"Error reading the file: {e}")
 
     st.button("Send For analysis",
-        help="Click to send the uploaded dataset for analysis. The AI will generate insights and visualizations based on the data.",
+        help="Click to send the uploaded dataset for analysis. Dattavism will generate insights and visualizations based on the data.",
         on_click=lambda: st.toast("Dataset sent for analysis! Please wait for the report.",icon="📄")
     )
     st.markdown("---")

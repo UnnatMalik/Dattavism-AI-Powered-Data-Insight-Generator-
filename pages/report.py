@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 
 st.set_page_config(
-    page_title="AI Insight Report",
+    page_title="Dattavism Insight Report",
     page_icon="📄",
     layout="centered",
     initial_sidebar_state="expanded"
@@ -19,6 +19,7 @@ class Pages_switch():
     st.sidebar.page_link("main.py", label="Home 🏠")
     st.sidebar.page_link("pages/upload_data.py", label="Upload Data-Sets 📂")
     st.sidebar.page_link("pages/report.py", label="Data-Set report 📄")
+    st.sidebar.page_link("pages/Q&A.py", label="Q&A with Dattavism ❓")
 
 st.title("📊 AI-Powered Data Insight Report")
 st.markdown("---")
@@ -34,7 +35,7 @@ if "df" in st.session_state:
     if context and report: 
         st.subheader("Context Detection")
         st.write(context)
-        tab1, tab2, tab3, tab4, tab5 = st.tabs(["🔍 Data-set overview","📄 AI Generated Report ","🤖 AI Suggested Charts","Custom Charts 📈","Download Report 📩"])
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(["🔍 Data-set overview","📄 Dattavism Generated Report ","🤖 Dattavism Suggested Charts","Custom Charts 📈","Download Report 📩"])
 
         with tab1:
             st.header("Data-set Overview 🔍")
@@ -49,7 +50,7 @@ if "df" in st.session_state:
             
         
         with tab3:
-           st.header("AI Generated Visualizations 📊")
+           st.header("Dattavism Generated Visualizations 📊")
            if "plot" in st.session_state:
                 for i,chart in enumerate(st.session_state["plot"]):
                     chart_type = chart.get("chart_type")

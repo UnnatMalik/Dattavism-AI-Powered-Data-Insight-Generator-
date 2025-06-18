@@ -6,7 +6,7 @@ from datetime import datetime
 
 # ---------- PAGE CONFIG ----------
 st.set_page_config(
-    page_title="AI Insight Generator",
+    page_title="Dattavism",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -27,6 +27,8 @@ class Pages_switch():
     st.sidebar.page_link("main.py", label="Home 🏠")
     st.sidebar.page_link("pages/upload_data.py", label="Upload Data-Sets 📂")
     st.sidebar.page_link("pages/report.py", label="Data-Set report 📄")
+    st.sidebar.page_link("pages/Q&A.py", label="Q&A with Dattavism ❓")
+
 
 # ---------- TITLE & HEADER ----------
 st.markdown("""
@@ -36,7 +38,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown("<div class='title'>📊 AI-Powered Data Insight Generator</div>", unsafe_allow_html=True)
+st.markdown("<div class='title'>📊 DATTAVISM AI-Powered Data Insight Generator</div>", unsafe_allow_html=True)
 st.markdown("<div class='tagline'>Analyze any dataset using Gemini, Pandas, Matplotlib & Streamlit</div>", unsafe_allow_html=True)
 
 st.markdown("---")
@@ -125,7 +127,7 @@ with st.container():
     with col_c:
         st.markdown("""
         <div class='feature-card'>
-            <div class='feature-title'>💬 Ask Gemini</div>
+            <div class='feature-title'>💬 Ask Dattavism</div>
             <div class='feature-desc'>Type questions in natural language and get data‑aware answers.</div>
         </div>
         """, unsafe_allow_html=True)

@@ -4,7 +4,7 @@ import google.generativeai as genai
 import pandas as pd 
 import os
 genai.configure(
-    api_key=os.getenv("API_KEY")
+    api_key=os.getenv("GEMINI_API")
 )
 
 model = genai.GenerativeModel("gemini-2.0-flash", system_instruction="You are a data analysis assistant. You will help users visiualize their datasets .")
