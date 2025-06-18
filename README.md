@@ -26,8 +26,12 @@ Dattavism is an intelligent, AI-powered data insight platform built with Python,
 5. User can ask questions and customize visualizations
 6. Export a downloadable PDF/Markdown report
 
-# Installation
-[(Back to top)](#table-of-contents)
+# 🔑 Prerequisites
+    Python 3.8+
+
+    Google Gemini API Key
+
+# 📦 Installation
 
 ```bash
 git clone https://github.com/UnnatMalik/Dattavism-AI-Powered-Data-Insight-Generator-.git
@@ -36,29 +40,22 @@ cd Dattavism-AI-Powered-Data-Insight-Generator-
 # Install dependencies
 pip install -r requirements.txt
 
-# Create a .env file and add your keys
-touch .env
+# Set Up Environment Variable
+setx GEMINI_API_KEY "your_gemini_api_key"
+
+# run streamlit app
+streamlit run main.py
+
 ```
 
 
-# Contribute
-[(Back to top)](#table-of-contents)
-
-You can use this section to highlight how people can contribute to your project.
-
-You can add information on how they can open issues or how they can sponsor the project.
-
-
-# License
-[(Back to top)](#table-of-contents)
-
-You can also mention what license the project uses. I usually add it like this:
-
-[MIT license](./LICENSE)
+# 🗺️ Roadmap
 
 
 
-<h2 id="technologies">💻 Technologies</h2>
+
+
+# ⚙️  Technologies
 
 
 
