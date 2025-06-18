@@ -48,6 +48,18 @@ streamlit run main.py
 
 ```
 
+# ⚙️  Technologies
+
+
+
+| Layer        | Tools/Technologies                  |
+|--------------|-------------------------------------|
+| Language   |  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white&style=for-the-badge" height="40" alt="python logo"  />                                         |
+| Frontend     | <img src="https://img.shields.io/badge/Streamlit-red?style=flat-square&logo=streamlit&logoColor=white" height="40" alt="Streamlit" />|
+| AI Engine    | <img src="https://img.shields.io/badge/google%20gemini-8E75B2?style=for-the-badge&logo=google%20gemini&logoColor=white" height="40" alt="Gemini" />                          |
+| Data Engine  | <img src="https://img.shields.io/badge/pandas-150458?logo=pandas&logoColor=white&style=for-the-badge" height="40" alt="pandas logo"  /> <img width="12" /> <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black" height="40" alt="Matplotlib" /> | 
+| Reporting    | <img src="https://img.shields.io/badge/ReportLabs-gray?style=flat-square&logo=readthedocs" height="40" alt="ReportLabs" /> <img src="https://img.shields.io/badge/MarkDown-Blue?style=flat-square&logo=markdown&logoColor=Red" height="40" alt="MarkDown" />    |
+
 
 # 🗺️ Roadmap
 ``` mermaid
@@ -72,20 +84,5 @@ flowchart TD
     style K fill:#2196F3,stroke:#1976D2
     style N fill:#9C27B0,stroke:#7B1FA2
 ```
-
-
-
-
-# ⚙️  Technologies
-
-
-
-| Layer        | Tools/Technologies                  |
-|--------------|-------------------------------------|
-| Language   |  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white&style=for-the-badge" height="40" alt="python logo"  />                                         |
-| Frontend     | <img src="https://img.shields.io/badge/Streamlit-red?style=flat-square&logo=streamlit&logoColor=white" height="40" alt="Streamlit" />|
-| AI Engine    | <img src="https://img.shields.io/badge/google%20gemini-8E75B2?style=for-the-badge&logo=google%20gemini&logoColor=white" height="40" alt="Gemini" />                          |
-| Data Engine  | <img src="https://img.shields.io/badge/pandas-150458?logo=pandas&logoColor=white&style=for-the-badge" height="40" alt="pandas logo"  /> <img width="12" /> <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black" height="40" alt="Matplotlib" /> | 
-| Reporting    | <img src="https://img.shields.io/badge/ReportLabs-gray?style=flat-square&logo=readthedocs" height="40" alt="ReportLabs" /> <img src="https://img.shields.io/badge/MarkDown-Blue?style=flat-square&logo=markdown&logoColor=Red" height="40" alt="MarkDown" />    |
 
 
