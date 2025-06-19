@@ -54,7 +54,6 @@ with col1:
         - 🧠 Gemini (AI summary + Q&A)
         - 📊 Matplotlib for graphs
         - 🧮 Pandas + NumPy for profiling
-        - 💾 MySQL (optional session tracking)
     """)
     st.success("➡️ Use the **sidebar** to begin by uploading your data.")
 
