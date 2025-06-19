@@ -3,13 +3,35 @@ import re
 import google.generativeai as genai 
 import pandas as pd 
 import os
+# Configure Gemini AI with API key from environment variables
 genai.configure(
     api_key=os.getenv("GEMINI_API")
 )
 
-model = genai.GenerativeModel("gemini-2.0-flash", system_instruction="You are a data analysis assistant. You will help users visiualize their datasets .")
+# Initialize model with visualization-specific instructions
+model = genai.GenerativeModel("gemini-2.0-flash", system_instruction="You are a data analysis assistant. You will help users visualize their datasets.")
 
 def detect_format(df):
+    """
+    Detects if the DataFrame is in wide format based on column characteristics.
+    
+    Args:
+        df (pandas.DataFrame): Input DataFrame to analyze
+        
+    Returns:
+        str or None: Returns 'Wide' if the DataFrame is in wide format, None otherwise
+        
+    Notes:
+        - Checks for unique values in columns
+        - Identifies potential ID columns
+        - Looks for year-like columns (starting with 19xx or 20xx)
+        
+    Example:
+        >>> data = pd.read_csv('sales_by_year.csv')
+        >>> format_type = detect_format(data)
+        >>> print(format_type)
+        'Wide'
+    """
     num_unique_cols = df.nunique()
     likely_id_cols = num_unique_cols[num_unique_cols > 1].index.tolist()
 
@@ -22,6 +44,47 @@ def detect_format(df):
 
 
 def generate_visualizations(data):
+    """
+    Generates visualization recommendations based on dataset characteristics.
+    
+    Args:
+        data (pandas.DataFrame): Dataset to analyze for visualization opportunities
+        
+    Returns:
+        list: List of dictionaries containing visualization recommendations:
+            - chart_type: Type of chart (bar, line, scatter, etc.)
+            - x_column: Column to use for x-axis
+            - y_column: Column to use for y-axis (if applicable)
+            - reason: Explanation of the insight this visualization would reveal
+            
+    Chart Types:
+        - Bar charts: For categorical comparisons
+        - Line charts: For time-based trends
+        - Scatter plots: For correlations
+        - Pie charts: For proportional data
+        - Histograms: For distribution analysis
+        - Maps: For geographical data
+        
+    Example:
+        >>> df = pd.read_csv('sales_data.csv')
+        >>> viz_recommendations = generate_visualizations(df)
+        >>> print(viz_recommendations)
+        [
+            {
+                "chart_type": "bar",
+                "x_column": "category",
+                "y_column": "sales",
+                "reason": "Shows sales distribution across categories"
+            },
+            ...
+        ]
+    
+    Notes:
+        - Handles both wide and long format data
+        - Automatically reshapes wide format data using pd.melt()
+        - Returns empty list if JSON parsing fails
+        - Uses Gemini AI for intelligent chart recommendations
+    """
     content = pd.DataFrame(data)
     if detect_format(content) == "Wide":
         content = pd.melt(content)

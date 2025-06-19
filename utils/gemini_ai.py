@@ -2,16 +2,34 @@ import os
 import pandas as pd
 import google.generativeai as genai
 
+# Configure Gemini AI with API key from environment variables
 Api_Key = os.getenv("GEMINI_API")
-print(Api_Key)
 genai.configure(
     api_key= Api_Key
 )
 
+# Initialize Gemini AI model with data analysis capabilities
 model = genai.GenerativeModel("gemini-2.0-flash", system_instruction="You are a data analysis assistant. You will help users analyze their datasets and generate insights.")
 
-
 def context_detection(data):
+    """
+    Analyzes a dataset to determine its context and domain.
+    
+    Args:
+        data (pandas.DataFrame): The input dataset to analyze
+        
+    Returns:
+        str: A textual description of the dataset including:
+            - Dataset overview
+            - Domain/sector classification
+            - Information being tracked
+            - Potential analysis objectives
+            
+    Example:
+        >>> df = pd.read_csv("sales_data.csv")
+        >>> context = context_detection(df)
+        >>> print(context)
+    """
     content = pd.DataFrame(data)
     prompt = f"""
             Given the following dataset : {content}, describe:
@@ -26,6 +44,31 @@ def context_detection(data):
     return model_response.text
 
 def generate_report(data):
+    """
+    Generates a comprehensive analysis report from the provided dataset.
+    
+    Args:
+        data (pandas.DataFrame): The dataset to analyze
+        
+    Returns:
+        str: A detailed markdown-formatted report containing:
+            - Dataset description and domain analysis
+            - Statistical overview
+            - Pattern analysis
+            - Business recommendations (if applicable)
+            - Top insights in various categories
+            - Key findings and recommendations
+            
+    Notes:
+        - Report is generated in markdown format suitable for PDF conversion
+        - Includes detailed statistical analysis and business insights
+        - No code snippets are included in the output
+        
+    Example:
+        >>> df = pd.read_csv("customer_data.csv")
+        >>> report = generate_report(df)
+        >>> print(report)
+    """
     content = pd.DataFrame(data)
     prompt = f"""
     You are a domain expert. Based on the column names, data types, and sample values below, guess what kind of dataset this is and describe the type of analysis that would be useful.
@@ -86,7 +129,30 @@ def generate_report(data):
     )
     return model_response.text 
 
-def answer_user_query(data, query, history,data_set):
+def answer_user_query(data, query, history,data_set,plots):
+    """
+    Answers user queries about the dataset based on the analysis report and visualizations.
+    
+    Args:
+        data (str): The analysis report text
+        query (str): The user's question about the data
+        history (list): Previous conversation history
+        data_set (pandas.DataFrame): The original dataset
+        plots (list): Generated visualizations and their descriptions
+        
+    Returns:
+        str: A detailed answer to the user's query based on the available information
+        
+    Example:
+        >>> response = answer_user_query(
+        ...     report_text,
+        ...     "What are the top selling products?",
+        ...     chat_history,
+        ...     sales_df,
+        ...     visualization_list
+        ... )
+        >>> print(response)
+    """
     content = data
     prompt = f"""
     You are a data analysis assistant. Based on the report below, answer the user's query.
@@ -94,6 +160,8 @@ def answer_user_query(data, query, history,data_set):
     Data-set : {data_set}
 
     Report : {content}
+
+    Visualizations : {plots}
 
     User Query: {query}
 

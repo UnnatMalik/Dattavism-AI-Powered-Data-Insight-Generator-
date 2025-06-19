@@ -81,11 +81,9 @@ class EnhancedReportGenerator:
     def create_cover_page(self, title):
         elements = []
         
-        # Add header with line
         elements.append(Paragraph("Data Analysis Report", self.caption_style))
         elements.append(Spacer(1, 0.5*inch))
         
-        # Title with background
         title_with_style = ParagraphStyle(
             'TitleWithBackground',
             parent=self.title_style,
@@ -98,7 +96,6 @@ class EnhancedReportGenerator:
         elements.append(Paragraph(title, title_with_style))
         elements.append(Spacer(1, 0.5*inch))
         
-        # Date and info
         date_str = datetime.datetime.now().strftime("%B %d, %Y")
         elements.append(Paragraph(f"Generated on {date_str}", self.caption_style))
         elements.append(Spacer(1, 0.25*inch))
@@ -108,8 +105,7 @@ class EnhancedReportGenerator:
         return elements
 
     def generate_chart(self, chart, df):
-        # Set professional style for plots
-        plt.style.use('bmh')  # Using a built-in matplotlib style
+        plt.style.use('bmh') 
         
         fig, ax = plt.subplots(figsize=(10, 6))
         chart_type = chart.get("chart_type")
@@ -130,20 +126,17 @@ class EnhancedReportGenerator:
             elif chart_type == "histogram":
                 ax.hist(df[y_column], bins=30, color='#3949AB', alpha=0.7)
             
-            # Enhance the plot appearance
             ax.set_title(f"{chart_type.title()} Chart: {x_column} vs {y_column}", 
                         pad=20, fontsize=12, fontweight='bold')
             ax.set_xlabel(x_column, fontsize=10)
             ax.set_ylabel(y_column, fontsize=10)
             ax.grid(True, alpha=0.3)
             
-            # Rotate x-axis labels if needed
             if chart_type in ["bar"]:
                 plt.xticks(rotation=45, ha='right')
             
             plt.tight_layout()
             
-            # Save to buffer
             img_buffer = io.BytesIO()
             plt.savefig(img_buffer, format='png', dpi=300, bbox_inches='tight')
             img_buffer.seek(0)
@@ -181,57 +174,45 @@ class EnhancedReportGenerator:
         table_elements = []
         total_rows = len(df)
         
-        # Calculate available width
         page_width = letter[0] - 144  # Letter width minus margins
         num_columns = len(df.columns) + 1  # +1 for index
         col_width = page_width / num_columns
         
-        # Format data with proper width constraints
         column_widths = [col_width] * num_columns
         
         for start_idx in range(0, total_rows, max_rows_per_page):
             end_idx = min(start_idx + max_rows_per_page, total_rows)
             
-            # Create subset of data
             df_subset = df.iloc[start_idx:end_idx]
             
-            # Convert to table data
             table_data = [['Index'] + list(df_subset.columns)]
             for idx, row in df_subset.iterrows():
                 table_data.append([str(idx)] + [str(val) for val in row.values])
             
-            # Create table with calculated widths
             table = Table(table_data, repeatRows=1, colWidths=column_widths)
             table.setStyle(self.create_table_style())
             
             table_elements.append(table)
             
-            # Add page break if not the last table
             if end_idx < total_rows:
                 table_elements.append(PageBreak())
         
         return table_elements
 
     def parse_markdown_table(self, markdown_text):
-        # Find tables in markdown
         table_pattern = r'\|.*\|[\r\n]\|[-|\s]*\|[\r\n](\|.*\|[\r\n])*'
         tables = re.finditer(table_pattern, markdown_text, re.MULTILINE)
         
         elements = []
         for table_match in tables:
             table_str = table_match.group(0)
-            # Split into rows and clean up
             rows = [row.strip() for row in table_str.split('\n') if row.strip()]
-            if len(rows) < 3:  # Need header, separator, and at least one data row
+            if len(rows) < 3:  
                 continue
-                
-            # Process rows into data
             header = [cell.strip() for cell in rows[0].split('|')[1:-1]]
             data_rows = []
-            for row in rows[2:]:  # Skip separator row
+            for row in rows[2:]: 
                 data_rows.append([cell.strip() for cell in row.split('|')[1:-1]])
-                
-            # Create Table
             table_data = [header] + data_rows
             table = Table(table_data)
             table.setStyle(TableStyle([
@@ -255,15 +236,12 @@ class EnhancedReportGenerator:
     def markdown_to_paragraphs(self, markdown_text):
         elements = []
         
-        # Split content by tables
         parts = re.split(r'(\|.*\|[\r\n]\|[-|\s]*\|[\r\n](?:\|.*\|[\r\n])*)', markdown_text)
         
         for part in parts:
             if part.strip().startswith('|'):
-                # Handle tables
                 elements.extend(self.parse_markdown_table(part))
             else:
-                # Handle regular markdown
                 html = markdown.markdown(part)
                 paragraphs = html.split('\n')
                 for p in paragraphs:
@@ -287,17 +265,15 @@ class EnhancedReportGenerator:
             doc = SimpleDocTemplate(
                 output_path,
                 pagesize=letter,
-                rightMargin=50,  # Reduced margins
+                rightMargin=50,  
                 leftMargin=50,
                 topMargin=50,
                 bottomMargin=50
             )
             elements = []
 
-            # Add cover page
             elements.extend(self.create_cover_page(report_title))
 
-            # Table of Contents with styling
             toc_style = ParagraphStyle(
                 'TOC',
                 parent=self.body_style,
@@ -311,7 +287,6 @@ class EnhancedReportGenerator:
                 elements.append(Paragraph(f"• {item}", toc_style))
             elements.append(PageBreak())
 
-            # Sections with compact spacing
             sections = [
                 ("1. Context Analysis", context_response),
                 ("2. Detailed Analysis", report_response)
@@ -323,20 +298,17 @@ class EnhancedReportGenerator:
                 elements.append(Spacer(1, 12))
                 elements.append(PageBreak())
 
-            # Data Summary section
             elements.append(Paragraph("3. Data Summary", self.section_style))
             summary_data = df.describe().round(2)
             summary_elements = self.format_large_tables(summary_data, max_rows_per_page=30)
             elements.extend(summary_elements)
-            
-            # Sample data with compact display
+
             elements.append(Paragraph("Sample Data", self.subsection_style))
             sample_data = df.head(30)
             sample_elements = self.format_large_tables(sample_data, max_rows_per_page=30)
             elements.extend(sample_elements)
             elements.append(PageBreak())
 
-            # Visualizations section with optimized layout
             elements.append(Paragraph("4. Data Visualizations", self.section_style))
             for i, chart in enumerate(figures, 1):
                 chart_title = f"Figure {i}: {chart.get('chart_type').title()} Chart"
@@ -345,18 +317,16 @@ class EnhancedReportGenerator:
                 img_buffer = self.generate_chart(chart, df)
                 if img_buffer:
                     img = Image(img_buffer)
-                    img.drawHeight = 3.5 * inch  # Slightly reduced size
+                    img.drawHeight = 3.5 * inch  
                     img.drawWidth = 6 * inch
                     elements.append(img)
                 
                 elements.append(Paragraph(chart.get('reason'), self.caption_style))
                 elements.append(Spacer(1, 12))
-                
-                # Add page break only if needed
+
                 if i % 2 == 0 and i < len(figures):
                     elements.append(PageBreak())
 
-            # Build PDF
             doc.build(elements)
             return True
             
